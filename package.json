@@ -1,0 +1,27 @@
+{
+    "name": "power-reader",
+    "version": "1.0.0",
+    "description": "Chrome extension that helps users consume written web content faster.",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack",
+        "build-watch": "webpack --watch",
+        "dev": "NODE_ENV=development webpack --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ekkuleivonen/power-reader.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ekkuleivonen/power-reader/issues"
+    },
+    "homepage": "https://github.com/ekkuleivonen/power-reader#readme",
+    "devDependencies": {
+        "ts-loader": "^9.3.0",
+        "webpack": "^5.72.1",
+        "webpack-cli": "^4.9.2"
+    }
+}
