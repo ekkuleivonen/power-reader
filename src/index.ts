@@ -15,8 +15,7 @@ const getTextContent = (currentUrl: string): HTMLElement[] => {
 };
 const paragraphs: HTMLElement[] = getTextContent(currentUrl);
 
-console.log(paragraphs);
-
+//Map each paragraph to to a HTML collection of bionic words
 paragraphs.map((paragraph) => {
     const modifiedParagraph = runBionic(paragraph);
     return modifiedParagraph;
