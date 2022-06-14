@@ -1,46 +1,51 @@
 export { runBionic };
 
-const runBionic = (node: ChildNode, paragraph: HTMLElement) => {
-    if (node.textContent === null) return node;
+const runBionic = (node: ChildNode, paragraph: HTMLElement):HTMLElement => {
+    console.log(paragraph.innerHTML);
+    if (node.textContent === null) return paragraph;
     const originalWords:string[] = node.textContent.split(" ");
-    const filteredWords = originalWords.filter(word => word!=="" && word !== "\n");
+    const filteredWords: string[] = originalWords.filter(word => word!=="" && word !== "\n");
     console.log("Filtered words: ", filteredWords);
     //replace each word with a span element
     filteredWords.forEach(word => {
-        console.log("NODE: ", node);
-        //if (node.parentElement === null) return null;
-        //highlight first letters (returns html string)
-        //const modifiedWord = spannify(word);
-
-        //check for , ; . ? ! "" * # etc...
-        console.log("REPLACING ", word, "WITH ", `<span>${word} </span>`);
-        const span = `<span style="color: hotpink; font-weight: bold;">${word} </span>`;
-        paragraph.innerHTML = paragraph.innerHTML.replace(word,span);
+        const modifiedWord = `<span style='font-weight: bold;'>${word}</span>`;
+        console.log("REPLACING ", word, "WITH ", modifiedWord);
+        paragraph.innerHTML = paragraph.innerHTML.replaceAll(word,modifiedWord);
     });
     return paragraph;
 };
 
-// const spannify = (word : string) : string=>{
-//     const characters = word.split("");
-//     let modifiedWord = "";
-//     switch(characters.length) {
-//         case 0:
-//             modifiedWord = word;
-//           break;
-//         case 1:
-//             modifiedWord = `<span style="color: hotpink; font-weight: bold;">${word} </span>`;
-//           break;
-//         case 2:
-//             modifiedWord = `<span style="color: hotpink; font-weight: bold;">${word} </span>`;
-//           break;
-//         case 3:
-//             modifiedWord = `<span style="color: hotpink; font-weight: bold;">${word} </span>`;
-//           break;
-//         default:
-//             modifiedWord ="";
-//       }
+const spannify = (word : string) : string=>{
+    const characters = word.split("");
+    let modifiedWord = "";
+    //check for , ; . ? ! "" * # etc...
+    switch(characters.length) {
+        case 0:
+            modifiedWord = word;
+          break;
+        case 1:
+            modifiedWord = `<span style="font-weight: bold;">${word} </span>`;
+          break;
+        case 2:
+            modifiedWord = `<span style="font-weight: bold;">${word} </span>`;
+          break;
+        case 3:
+            modifiedWord = `<span style="font-weight: bold;">${word} </span>`;
+          break;
+        default:
+            let spanned = "";
+            let notspanned = "";
+            for (let i=0; i<characters.length; i++){
+                if (i < characters.length/2) {
+                    spanned = spanned += characters[i];
+                } else {
+                    notspanned += notspanned += characters[i];
+                }
+            }
+            modifiedWord =`<span style="font-weight: bold;">${spanned}</span>${notspanned}`;
+      }
     
-//     return modifiedWord;
-// };
+    return modifiedWord;
+};
 
 
