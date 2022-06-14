@@ -1,4 +1,4 @@
-import { runBionic } from "./bionic-algorithm";
+import {replaceNode } from "./bionic-algorithm";
 import {wordExtract} from  "./extractors";
 import { defaultWebclient } from "./default";
 import { gmailWebClient } from "./gmail";
@@ -17,16 +17,14 @@ const getTextContent = (currentUrl: string): HTMLElement[] => {
 const paragraphs: HTMLElement[] = getTextContent(currentUrl);
 
 //Map each paragraph to to a HTML collection of bionic words
-paragraphs.map((paragraph) => {
+paragraphs.forEach((paragraph) => {
     //split paragraphs into nodes
     const originalParagraphNodes = [...paragraph.childNodes];
-    //send each node to bionic algo (this returns a  modified paragraph HTML)
-    const newParagraph = originalParagraphNodes.map(node => {
+    originalParagraphNodes.forEach((node, idx) => {
         if (node === null) return node;
-        if ( node.nodeName !== "#text") return node;
-        return runBionic(node, paragraph);
+        if (node.nodeName !== "#text") return node;
+        //replace text nodes with bionic content
+        const newChildNode = replaceNode(node);
+        return paragraph.replaceChild(newChildNode, paragraph.childNodes[idx]);
     });
-    //replace HTML Element with a the HTML collection
-    console.log("New paragraph: ", newParagraph);
-    return newParagraph;
 });
