@@ -3,6 +3,12 @@
     "name": "Power Reader",
     "description": "Read web content 2x faster.",
     "version": "1.0",
+    "permissions":[
+        "activeTab", "tabs"
+    ],
+    "background": {
+        "service_worker": "dist/background.js"
+      },
     "icons": {
         "16": "images/logo-16.png",
         "48": "images/logo-48.png",
@@ -18,7 +24,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://*/*", "http://*/*"],
+            "matches": ["<all_urls>"],
             "js": ["dist/content.js"]
         }
     ]

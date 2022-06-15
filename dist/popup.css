@@ -9,7 +9,6 @@ box-sizing: border-box;
 
 .container{
     min-width: 500px;
-    min-height: 500px;
     padding: 2em;
     background-color: #525252;
     color: white;
@@ -26,8 +25,10 @@ box-sizing: border-box;
 
 .toggles{
     text-align: left;
+    margin-top: 20px;
     width: 100%;
     display: grid;
+    row-gap: 10px;
     grid-template-columns: 0.8fr 0.2fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
@@ -41,8 +42,8 @@ box-sizing: border-box;
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 51px;
+    height: 25px;
   }
   
   /* Hide default HTML checkbox */
@@ -68,8 +69,8 @@ box-sizing: border-box;
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 17px;
+    width: 17px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -102,6 +103,7 @@ box-sizing: border-box;
 
 .shortcuts{
     text-align: left;
+    margin: 20px 0px 20px 0px;
     width: 100%;
 }
 

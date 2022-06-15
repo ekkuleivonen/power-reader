@@ -1,4 +1,4 @@
-export {replaceNode};
+export {highlightWords,deHighlightWords};
 
 const replaceNode = (node: ChildNode): HTMLSpanElement | ChildNode =>{
     if (node.textContent === null) return node;
@@ -52,5 +52,25 @@ const runBio = (word: string): string =>{
     }
     return biometricWord;
 };
+
+const highlightWords = (paragraphs: HTMLElement[]) => {
+    paragraphs.forEach((paragraph) => {
+        //split paragraphs into nodes
+        const originalParagraphNodes = [...paragraph.childNodes];
+        originalParagraphNodes.forEach((node, idx) => {
+            if (node === null) return node;
+            if (node.nodeName !== "#text") return node;
+            //replace text nodes with bionic content
+            const newChildNode = replaceNode(node);
+            return paragraph.replaceChild(newChildNode, paragraph.childNodes[idx]);
+        });
+    });
+};
+
+const deHighlightWords = () => {
+    location.reload();
+
+};
+
 
 
