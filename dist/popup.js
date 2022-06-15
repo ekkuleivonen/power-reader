@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=document.getElementById("title");e&&(e.innerText=`${e.innerText} v.01`),console.log(e)})();

@@ -1,24 +1,25 @@
 {
     "manifest_version": 3,
     "name": "Power Reader",
-    "description": "Read web content 2x as fast.",
+    "description": "Read web content 2x faster.",
     "version": "1.0",
     "icons": {
-        "16": "/images/power-reader-icon-16px.jpg",
-        "48": "/images/power-reader-icon-48px.jpg",
-        "128": "/images/power-reader-icon-128px.jpg"
+        "16": "images/logo-16.png",
+        "48": "images/logo-48.png",
+        "128": "images/logo-128.png"
     },
-    "page_action": {
+    "action": {
+        "default_popup": "dist/popup.html",
         "default_icon": {
-            "16": "/images/power-reader-icon-16px.jpg",
-            "48": "/images/power-reader-icon-48px.jpg",
-            "128": "/images/power-reader-icon-128px.jpg"
+            "16": "images/logo-16.png",
+            "48": "images/logo-48.png",
+            "128": "images/logo-128.png"
         }
     },
     "content_scripts": [
         {
             "matches": ["https://*/*", "http://*/*"],
-            "js": ["/dist/main.js"]
+            "js": ["dist/content.js"]
         }
     ]
 }

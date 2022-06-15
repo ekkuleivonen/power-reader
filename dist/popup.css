@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;300;400;600&display=swap');
+
+*{
+margin: 0;
+padding: 0;
+border: 0;
+box-sizing: border-box;
+}
+
+.container{
+    min-width: 500px;
+    min-height: 500px;
+    padding: 2em;
+    background-color: #525252;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    text-align: center;
+    
+}
+
+.container h1{
+    text-align: left;
+    font-weight: 600;
+    font-size: 3em;
+}
+
+.toggles{
+    text-align: left;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.8fr 0.2fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.toggles h3{
+    font-weight: 400;
+    font-size: 1.5em;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+.shortcuts{
+    text-align: left;
+    width: 100%;
+}
+
+.shortcuts h2{
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+.shortcuts h3{
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+a{
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.5em;
+}
