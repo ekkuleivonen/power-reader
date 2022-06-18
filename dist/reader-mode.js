@@ -1,0 +1,1 @@
+(()=>{"use strict";const e="reader_mode";chrome.runtime.onMessage.addListener(((s,r,t)=>(!0===s.value&&s.name===e&&(n(),t({msg:`${e} enabled`})),!1===s.value&&s.name===e&&(a(),t({msg:`${e} disabled`})),!0)));const n=()=>{alert(`${e} running`)},a=()=>{alert(`${e} stopping`)}})();
