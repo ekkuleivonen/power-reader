@@ -20,7 +20,7 @@ chrome.runtime.onMessage.addListener(
         toggleReaderMode(request);
         break;
       case "shortcuts":
-        //toggleKeyboardShortCuts(request);
+        toggleKeyboardShortCuts(request);
         break;
     }
   }

@@ -36,7 +36,7 @@ var config = {
 
 var highlightConfig = Object.assign({}, config, {
   name: "highlight",
-  entry: "./src/plugins/highlight/index.ts",
+  entry: "./src/plugins/highlight/highlight.ts",
   output: {
     path: __dirname + "/dist",
     filename: "highlight.js",
@@ -62,10 +62,19 @@ var popUpScriptConfig = Object.assign({}, config, {
 
 var readerModeConfig = Object.assign({}, config, {
   name: "readerMode",
-  entry: "./src/plugins/reader-mode/index.ts",
+  entry: "./src/plugins/reader-mode/reader-mode.ts",
   output: {
     path: __dirname + "/dist",
     filename: "reader-mode.js",
+  },
+});
+
+var shortcutsConfig = Object.assign({}, config, {
+  name: "shortcuts",
+  entry: "./src/plugins/shortcuts/shortcuts.ts",
+  output: {
+    path: __dirname + "/dist",
+    filename: "shortcuts.js",
   },
 });
 
@@ -74,4 +83,5 @@ module.exports = [
   popUpScriptConfig,
   backGroundScriptConfig,
   readerModeConfig,
+  shortcutsConfig,
 ];
