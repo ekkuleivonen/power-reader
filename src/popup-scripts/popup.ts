@@ -3,50 +3,38 @@ const title: HTMLElement | null = document.getElementById("title");
 const version: string = "v.01";
 if (title) title.innerText = `${title.innerText} ${version}`;
 ///////////////////////////////////////////////////////////////////////
-const queryBackgroundScript = (name: string, value: boolean) => {
-  chrome.runtime.sendMessage({ name: name, value: value });
-};
 
-//talk with content script
-const queryContentScript = (name: string, value: boolean) => {
-  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-    const activeTab: any = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, { toggle: name, value: value });
+// In-page cache of the user's options
+const pluginOptions: any = {};
+
+// Initialize the form with the user's option settings
+chrome.storage.sync.get(["plugin_options"], function (result) {
+  Object.assign(pluginOptions, result.plugin_options);
+  Object.keys(pluginOptions).forEach((key) => {
+    const checkBox = document.getElementById(key as string) as HTMLInputElement;
+    checkBox.checked = pluginOptions[key];
   });
-};
-///////////////////////////////////////////////////////////////////////
+});
 
-//grabbing elements from DOM
-const highLightToggle: HTMLInputElement | null = document.getElementById(
-  "highlights"
-) as HTMLInputElement;
-const readerModeToggle: HTMLInputElement | null = document.getElementById(
-  "reader_mode"
-) as HTMLInputElement;
-const highLightAllToggle: HTMLInputElement | null = document.getElementById(
-  "highlights_all"
-) as HTMLInputElement;
-const shortcutsToggle: HTMLInputElement | null = document.getElementById(
-  "shortcuts"
-) as HTMLInputElement;
+//SEND TOGGLE UPDATES TO BACKGROUND SCRIPT
+const pluginForm: HTMLFormElement | null = document.getElementById(
+  "plugin-form"
+) as HTMLFormElement;
 
 const handleToggle = (e: Event) => {
   const target = e.target as HTMLInputElement;
   const value = target.checked;
   const name = target.name;
-  return queryBackgroundScript(name, value);
+  //update cache
+  pluginOptions[name] = value;
+  chrome.storage.sync.set({ plugin_options: pluginOptions });
+  //return chrome.runtime.sendMessage({ name: name, value: value });
 };
 
-//event listeners on each toggle
-if (
-  highLightToggle &&
-  readerModeToggle &&
-  highLightAllToggle &&
-  shortcutsToggle
-) {
-  highLightToggle.addEventListener("change", handleToggle);
-  readerModeToggle.addEventListener("change", handleToggle);
-  highLightAllToggle.addEventListener("change", handleToggle);
-  shortcutsToggle.addEventListener("change", handleToggle);
+//event listener on the form
+if (pluginForm) {
+  pluginForm.addEventListener("change", handleToggle);
 }
 ///////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////

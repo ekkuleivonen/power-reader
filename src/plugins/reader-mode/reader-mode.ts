@@ -1,15 +1,14 @@
 import { findTextContent, createReaderModal } from "./content";
-const plugin = "reader_mode";
 
 chrome.runtime.onMessage.addListener(
   (request: { name: string; value: boolean }, sender, sendResponse) => {
-    if (request.value === true && request.name === plugin) {
+    if (request.value === true && request.name === "reader_mode") {
       enableReaderMode();
-      sendResponse({ msg: `${plugin} enabled` });
+      sendResponse({ msg: "reader_mode enabled" });
     }
-    if (request.value === false && request.name === plugin) {
+    if (request.value === false && request.name === "reader_mode") {
       disableReaderMode();
-      sendResponse({ msg: `${plugin} disabled` });
+      sendResponse({ msg: "reader_mode disabled" });
     }
     return true;
   }

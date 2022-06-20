@@ -9,15 +9,25 @@ let char_e = false;
 const highlightShortcut = () => {
   console.log("highlights shortcut");
   //check chrome store if plugin is active
-  // if active, disable via background JS
-  // if not enable via background JS
+  chrome.storage.sync.get(["highlights"], function (result) {
+    // if already active --> turn off --> otherwise turn on
+    if (!result.highlights)
+      return chrome.runtime.sendMessage({ name: "highlights", value: true });
+    if (result.highlights)
+      return chrome.runtime.sendMessage({ name: "highlights", value: false });
+  });
 };
 
 const readerModeShortcut = () => {
   console.log("reader mode shortcut");
   //check chrome store if plugin is active
-  // if active, disable via background JS
-  // if not enable via background JS
+  chrome.storage.sync.get(["reader_mode"], function (result) {
+    // if already active --> turn off --> otherwise turn on
+    if (!result.reader_mode)
+      return chrome.runtime.sendMessage({ name: "reader_mode", value: true });
+    if (result.reader_mode)
+      return chrome.runtime.sendMessage({ name: "reader_mode", value: false });
+  });
 };
 
 const keyboardShortcuts = (e: KeyboardEvent) => {

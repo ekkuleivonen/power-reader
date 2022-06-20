@@ -12,7 +12,7 @@ const disablePlugin = (
 ) => {
   if (!currentTab.id) return;
   return chrome.tabs.sendMessage(currentTab.id, request, (response) => {
-    console.log(response.msg);
+    console.log("script response: ", response.msg);
   });
 };
 
@@ -31,7 +31,7 @@ const enablePlugin = (
       //And then giving the script the green light via a message
       if (!currentTab.id) return;
       chrome.tabs.sendMessage(currentTab.id, request, (response) => {
-        console.log(response.msg);
+        console.log("script response: ", response.msg);
       });
     });
 };
@@ -42,7 +42,7 @@ const toggleReaderMode = async (request: { name: string; value: boolean }) => {
   const currentTab = await getCurrentTab();
   //Already active reader mode can be disabled via a message to the script
   if (request.value === false) return disablePlugin(currentTab, request);
-  //Enabling script by injecting to active tab, and givving green light to execute
+  //Enabling script by injecting to active tab, and giving green light to execute
   return enablePlugin(currentTab, request, "dist/reader-mode.js");
 };
 
@@ -51,7 +51,7 @@ const toggleHighlights = async (request: { name: string; value: boolean }) => {
   const currentTab = await getCurrentTab();
   //Already active reader mode can be disabled via a message to the script
   if (request.value === false) return disablePlugin(currentTab, request);
-  //Enabling script by injecting to active tab, and givving green light to execute
+  //Enabling script by injecting to active tab, and giving green light to execute
   return enablePlugin(currentTab, request, "dist/highlight.js");
 };
 
@@ -63,8 +63,22 @@ const toggleKeyboardShortCuts = async (request: {
   const currentTab = await getCurrentTab();
   //Already active reader mode can be disabled via a message to the script
   if (request.value === false) return disablePlugin(currentTab, request);
-  //Enabling script by injecting to active tab, and givving green light to execute
+  //Enabling script by injecting to active tab, and giving green light to execute
   return enablePlugin(currentTab, request, "dist/shortcuts.js");
 };
 
-export { toggleReaderMode, toggleHighlights, toggleKeyboardShortCuts };
+const togglePlugins = (pluginOptions: {
+  highlights: boolean;
+
+  reader_mode: boolean;
+  shortcuts: boolean;
+}) => {
+  toggleHighlights({ name: "highlights", value: pluginOptions.highlights });
+  toggleReaderMode({ name: "reader_mode", value: pluginOptions.reader_mode });
+  toggleKeyboardShortCuts({
+    name: "shortcuts",
+    value: pluginOptions.shortcuts,
+  });
+};
+
+export { togglePlugins };

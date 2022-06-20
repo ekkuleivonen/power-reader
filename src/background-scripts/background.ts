@@ -1,33 +1,40 @@
-import {
-  toggleHighlights,
-  toggleReaderMode,
-  toggleKeyboardShortCuts,
-} from "./plugin-toggles";
+import { togglePlugins } from "./plugin-toggles";
 
-//listen for messages from popup.js (extenstion ui)
-//1. message to toggle reader mode on/off
-//2. message to toggle highlights on/off
-chrome.runtime.onMessage.addListener(
-  (request: { name: string; value: boolean }, sender, sendResponse) => {
-    switch (request.name) {
-      case "highlights":
-        toggleHighlights(request);
-        break;
-      case "highlights_all":
-        console.log("highlights_all");
-        break;
-      case "reader_mode":
-        toggleReaderMode(request);
-        break;
-      case "shortcuts":
-        toggleKeyboardShortCuts(request);
-        break;
+const pluginOptions = {
+  highlights: false,
+  reader_mode: false,
+  shortcuts: false,
+};
+
+//INIT PLUGIN OPTIONS UPON INSTALL
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.sync.get(["plugin_options"], (result) => {
+    if (result.plugin_options) {
+      //assing options to cache
+      console.log("Existing options: ", result.plugin_options);
+      Object.assign(pluginOptions, result.plugin_options);
+    } else {
+      //create plugin options in storage
+      console.log("Creating initial plugin options...");
+      chrome.storage.sync.set({ plugin_options: pluginOptions });
     }
-  }
-);
+  });
+});
+///////////////////////////////////////////////////////////////////////
 
-//Inject needed scripts to the tab upon page load
-chrome.webNavigation.onCompleted.addListener(() => {
-  toggleHighlights({ name: "highlights_init", value: true }); // will check if user has auto-highlights enabled before injection
-  //toggleKeyboardShortCuts({ name: "shortcuts_init", value: true }); // will check if user has shortcuts enabled before injection
+//LISTEN FOR CHANGES IN PLUGIN OPTIONS
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "sync" && changes.plugin_options?.newValue) {
+    Object.assign(pluginOptions, changes.plugin_options.newValue);
+    //Toggle plugins based on user's plugin options
+    togglePlugins(pluginOptions);
+  }
+});
+
+// TOGGLE PLUGINS UPON PAGE LOAD
+chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
+  if (info.status == "complete") {
+    //Toggle plugins based on user's plugin options
+    togglePlugins(pluginOptions);
+  }
 });
