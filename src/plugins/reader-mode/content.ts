@@ -1,4 +1,4 @@
-export { findTextContent, createReaderModal };
+import { styleTextElement, deStyleChildNodes } from "./styles";
 
 const findTextContent = (): HTMLElement[] => {
   // get all tags from page
@@ -18,6 +18,7 @@ const findTextContent = (): HTMLElement[] => {
     element.id = "";
     styleTextElement(element);
     //TODO: remove a tag styling in child elementss
+    deStyleChildNodes(element);
   });
 
   return mainContent;
@@ -49,7 +50,7 @@ const styleModal = (modal: HTMLDivElement): HTMLDivElement => {
   modal.style.position = "absolute";
   modal.style.display = "flex";
   modal.style.justifyContent = "center";
-  modal.style.zIndex = "1000000";
+  modal.style.zIndex = "100000000";
   modal.style.top = "0";
   modal.style.left = "0";
   modal.style.width = "100vw";
@@ -58,27 +59,4 @@ const styleModal = (modal: HTMLDivElement): HTMLDivElement => {
   return modal;
 };
 
-const styleTextElement = (element: HTMLElement): HTMLElement => {
-  element.style.color = "white";
-  element.style.fontFamily = "sans-serif";
-  //h1
-  if (element.tagName === "H1") {
-    element.style.fontSize = "3em";
-  }
-  //h2
-  if (element.tagName === "H2") {
-    element.style.fontSize = "2em";
-  }
-  //h3
-  if (element.tagName === "H3") {
-    element.style.fontSize = "1.5em";
-  }
-  //p
-  if (element.tagName === "P") {
-    element.style.fontSize = "1em";
-    element.style.fontWeight = "200";
-    element.style.letterSpacing = "0.03em";
-    element.style.lineHeight = "1.75em";
-  }
-  return element;
-};
+export { findTextContent, createReaderModal };

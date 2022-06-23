@@ -14,7 +14,7 @@ const replaceNode = (node: ChildNode): HTMLSpanElement | ChildNode => {
 const spannifyChild = (words: string[]): string => {
   let HTMLstring: string = "";
   words.forEach((word) => {
-    const spannifiedWord = `<span style="letterSpacing = 0.03em;"> ${runBio(
+    const spannifiedWord = `<span style="letterSpacing = 0.1em;"> ${runBio(
       word
     )} </span>`;
     HTMLstring += spannifiedWord;
@@ -23,8 +23,10 @@ const spannifyChild = (words: string[]): string => {
 };
 
 const runBio = (word: string): string => {
+  //avoid highlighting numbers
   var hasNumber = /\d/;
   if (hasNumber.test(word)) return word;
+
   let biometricWord = "";
   const characters: string[] = word.split("");
   switch (characters.length) {
@@ -32,13 +34,13 @@ const runBio = (word: string): string => {
       biometricWord = word;
       break;
     case 1:
-      biometricWord = `<span style="font-weight: 400; letterSpacing = 0.03em;"> ${word} </span>`;
+      biometricWord = `<span style="font-weight: bold; "> ${word} </span>`;
       break;
     case 2:
-      biometricWord = `<span style="font-weight: 400; letterSpacing = 0.03em;"> ${word} </span>`;
+      biometricWord = `<span style="font-weight: bold; "> ${word} </span>`;
       break;
     case 3:
-      biometricWord = `<span style="font-weight: 400; letterSpacing = 0.03em;"> ${word} </span>`;
+      biometricWord = `<span style="font-weight: bold; "> ${word} </span>`;
       break;
     default:
       let bold = "";
