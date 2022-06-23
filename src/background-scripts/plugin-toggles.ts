@@ -81,4 +81,8 @@ const togglePlugins = (pluginOptions: {
   });
 };
 
-export { togglePlugins };
+const handleHotkey = () => {
+  //
+};
+
+export { togglePlugins, handleHotkey };
