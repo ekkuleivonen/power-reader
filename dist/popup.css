@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;300;400;600&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -8,51 +6,70 @@
 }
 
 .container {
-  min-width: 500px;
-  padding: 2em;
+  min-width: 400px;
+  padding: 3em;
   background-color: #525252;
   color: white;
-  font-family: "IBM Plex Mono", monospace;
-  text-align: center;
+  font-family: sans-serif;
 }
 
-.container h1 {
-  text-align: left;
+h1 {
   font-weight: 600;
   font-size: 3em;
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
-.toggles {
-  text-align: left;
-  margin-top: 20px;
-  width: 100%;
-  display: grid;
-  row-gap: 10px;
-  grid-template-columns: 0.8fr 0.2fr;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-.toggles h3 {
+h2 {
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 2em;
+  margin-bottom: 0.25em;
 }
 
-/* The switch - the box around the slider */
+p {
+  font-size: 1.5em;
+  color: rgb(207, 207, 207);
+  line-height: 1.5em;
+}
+
+a {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  color: orange;
+}
+
+.highlights,
+.reader-mode {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+}
+
+.about {
+  margin-top: 1.5em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* TOGGLES */
 .switch {
   position: relative;
   display: inline-block;
   width: 51px;
   height: 25px;
 }
-
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -64,7 +81,6 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -76,49 +92,21 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: orange;
 }
-
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px orange;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
-
-.shortcuts {
-  text-align: left;
-  margin: 20px 0px 20px 0px;
-  width: 100%;
-}
-
-.shortcuts h2 {
-  font-weight: 600;
-  font-size: 1.5em;
-}
-
-.shortcuts h3 {
-  font-weight: 300;
-  font-size: 1.5em;
-}
-
-a {
-  width: 100%;
-  text-align: center;
-  font-weight: 300;
-  font-size: 1.5em;
-}
+/* TOGGLES */

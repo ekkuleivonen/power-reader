@@ -11,28 +11,34 @@
       <h1 id="title">Power reader</h1>
 
       <form id="plugin-form">
-        <h3>Highlights:</h3>
-        <label class="switch" for="highlights">
-          <input type="checkbox" name="highlights" id="highlights" />
-          <span class="slider round"></span>
-        </label>
+        <div class="highlights">
+          <h2>Highlights:</h2>
+          <label class="switch" for="highlights">
+            <input type="checkbox" name="highlights" id="highlights" />
+            <span class="slider round"></span>
+          </label>
+        </div>
 
-        <h3>Reader mode:</h3>
-        <label class="switch" for="reader_mode">
-          <input type="checkbox" name="reader_mode" id="reader_mode" />
-          <span class="slider round"></span>
-        </label>
+        <div class="reader-mode">
+          <h2>Reader mode:</h2>
+          <label class="switch" for="reader_mode">
+            <input type="checkbox" name="reader_mode" id="reader_mode" />
+            <span class="slider round"></span>
+          </label>
+        </div>
 
-        <h2>Shortcuts</h2>
-        <h3>Highlights: "Ctrl+Shift+S"</h3>
-        <h3>Reader mode: "Ctrl+Shift+E"</h3>
-        <label class="switch" for="shortcuts">
-          <input type="checkbox" name="shortcuts" id="shortcuts" />
-          <span class="slider round"></span>
-        </label>
+        <div class="shortcuts">
+          <h2>Shortcuts:</h2>
+          <p>Highlights: "Ctrl+Shift+S"</p>
+          <p>Reader mode: "Ctrl+Shift+E"</p>
+        </div>
       </form>
 
-      <a href="https://www.google.com" target="_blank">About</a>
+      <div class="about">
+        <a href="https://github.com/ekkuleivonen/power-reader" target="_blank"
+          >About</a
+        >
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>

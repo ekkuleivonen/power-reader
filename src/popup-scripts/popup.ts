@@ -1,6 +1,6 @@
 //version
 const title: HTMLElement | null = document.getElementById("title");
-const version: string = "v.01";
+const version: string = "v.0.01";
 if (title) title.innerText = `${title.innerText} ${version}`;
 ///////////////////////////////////////////////////////////////////////
 

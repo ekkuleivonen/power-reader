@@ -1,7 +1,7 @@
 {
   "name": "Power Reader",
   "description": "Read web content 2x faster.",
-  "version": "1.0",
+  "version": "1",
   "icons": {
     "16": "images/logo-16.png",
     "48": "images/logo-48.png",
@@ -21,8 +21,7 @@
     "service_worker": "dist/background.js"
   },
 
-  "permissions": ["activeTab", "tabs", "scripting", "webNavigation", "storage"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": ["activeTab", "tabs", "scripting", "storage"],
 
   "commands": {
     "highlights": {
